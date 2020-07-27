@@ -1,15 +1,10 @@
-<?php declare(strict_types=1);
-$loader = require '../vendor/autoload.php';
-$loader->register();
+<?php
 
-use Symfony\Component\HttpFoundation\Request;
+use App\Container;
 
-$request = Request::createFromGlobals();
+require_once('../vendor/autoload.php');
 
-switch($request->getPathInfo()) {
-    case '/':
-        echo 'Home page';
-        break;
-    default:
-        echo 'Not found';
-}
+$container = Container::buildContainer(dirname(__DIR__));
+
+$response = $container->get('response');
+$response->send();

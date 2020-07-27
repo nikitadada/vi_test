@@ -1,0 +1,8 @@
+services:
+    controller.order:
+        class: App\Controller\OrderController
+        arguments: ["@request", "@order.service"]
+
+    controller.product:
+        class: App\Controller\ProductController
+        arguments: ["@product.service"]

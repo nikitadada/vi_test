@@ -1,0 +1,25 @@
+imports:
+    - { resource: 'controllers.yaml' }
+    - { resource: 'routing.yaml' }
+    - { resource: 'events.yaml' }
+    - { resource: 'kernel.yaml' }
+    - { resource: 'doctrine.yaml' }
+    - { resource: 'repositories.yaml' }
+
+services:
+    order.service:
+        class: App\Service\OrderService
+        arguments: ["@repository.product", "@repository.order", "@billing.service", "@doctrine.entity_manager"]
+
+    product.service:
+        class: App\Service\ProductService
+        arguments: ["@doctrine.entity_manager"]
+
+    guzzlehttp.client:
+        class: GuzzleHttp\Client
+        tags:
+            - { name: guzzlehttp_client }
+
+    billing.service:
+        class: App\Service\BillingService
+        arguments: ["@guzzlehttp.client"]

@@ -1,0 +1,10 @@
+services:
+    repository.product:
+        class: Doctrine\ORM\EntityRepository
+        factory: [ "@doctrine.entity_manager", getRepository ]
+        arguments: [App\Entity\Product]
+
+    repository.order:
+        class: Doctrine\ORM\EntityRepository
+        factory: [ "@doctrine.entity_manager", getRepository ]
+        arguments: [App\Entity\Order]

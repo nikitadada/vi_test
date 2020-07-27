@@ -1,0 +1,24 @@
+parameters:
+    doctrine.driver: "pdo_mysql"
+    doctrine.user: "user"
+    doctrine.password: "password"
+    doctrine.dbname: "db"
+    doctrine.paths: ["%app_root%/src/Entity"]
+
+services:
+    doctrine.config:
+        class: Doctrine\ORM\Configuration
+        factory: [ Doctrine\ORM\Tools\Setup, createAnnotationMetadataConfiguration ]
+        arguments:
+            $paths: "%doctrine.paths%"
+    doctrine.entity_manager:
+        class: Doctrine\ORM\EntityManager
+        factory: [ Doctrine\ORM\EntityManager, create ]
+        arguments:
+            $connection:
+                driver: "%doctrine.driver%"
+                user: "%doctrine.user%"
+                password: "%doctrine.password%"
+                dbname: "%doctrine.dbname%"
+                host: db
+            $config: "@doctrine.config"

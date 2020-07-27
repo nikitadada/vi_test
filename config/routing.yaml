@@ -1,0 +1,33 @@
+services:
+    route.product_init:
+        class: Symfony\Component\Routing\Route
+        calls:
+            - [setMethods, ["POST"]]
+        arguments:
+            $path: /product/init
+            $defaults:
+                _controller: ["@controller.product", 'initAction']
+        tags:
+            - { name: route, route_name: 'route_product_init' }
+
+    route.order_new:
+        class: Symfony\Component\Routing\Route
+        calls:
+            - [setMethods, ["POST"]]
+        arguments:
+            $path: /order
+            $defaults:
+                _controller: ["@controller.order", 'newAction']
+        tags:
+            - { name: route, route_name: 'route_order' }
+
+    route.order_pay:
+        class: Symfony\Component\Routing\Route
+        calls:
+            - [setMethods, ["POST"]]
+        arguments:
+            $path: /order/{id}/pay
+            $defaults:
+                _controller: ["@controller.order", 'payAction']
+        tags:
+            - { name: route, route_name: 'route_order_pay' }

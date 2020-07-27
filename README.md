@@ -2,7 +2,48 @@
 
 ## API
 
-TBD
+- создать товары: POST http://vi-test.loc/product/init  
+
+Ответ:
+```
+{
+    "productIds": [
+        41,
+        42,
+        .
+        .
+        .
+    ]
+}
+```
+
+- создать заказ: POST http://vi-test.loc/order  
+
+Передать в теле запроса:  
+```
+{"productIds": [21, 25, ...]}
+```
+Ответ:
+``` 
+{
+   "orderId": 3,
+   "orderStatus": "paid"
+} 
+```
+
+- оплатить заказ: POST http://vi-test.loc/order/{id}/pay  
+
+Передать в теле запроса:  
+```
+{"amount": 500.25}
+```
+Ответ (В случае ошибки будет выброшено исключение):
+``` 
+{
+   "orderId": 3,
+   "orderStatus": "new"
+} 
+```
 
 ## Используемые технологии
 

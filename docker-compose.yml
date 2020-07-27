@@ -1,45 +1,43 @@
 version: '3.7'
 services:
-  nginx:
-    image: nginx:1.19.1-alpine
-    restart: on-failure
-    volumes:
-      - ./public/:/usr/src/app
-      - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
-    expose:
-      - 80
-    networks:
-      - default
-      - nginx-proxy
-    environment:
-      VIRTUAL_HOST: vi-test.loc
-    depends_on:
-      - app
+    nginx:
+        image: nginx:1.19.1-alpine
+        restart: on-failure
+        volumes:
+            - ./public/:/usr/src/app
+            - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
+        expose:
+            - 80
+        networks:
+            - default
+            - nginx-proxy
+        environment:
+            VIRTUAL_HOST: vi-test.loc
+        depends_on:
+            - app
 
-  app:
-    build:
-      context: .
-      dockerfile: docker/app/Dockerfile
-    restart: on-failure
-    volumes:
-      - ./:/usr/src/app${VOLUMES_FLAG}
+    app:
+        build:
+            context: .
+            dockerfile: docker/app/Dockerfile
+        restart: on-failure
+        volumes:
+            - ./:/usr/src/app
 
-  db:
-    image: mysql:5.7
-    restart: always
-    environment:
-      MYSQL_DATABASE: 'db'
-      MYSQL_USER: 'user'
-      MYSQL_PASSWORD: 'password'
-      MYSQL_ROOT_PASSWORD: 'password'
-    ports:
-      - '3306:3306'
-    expose:
-      - '3306'
-    volumes:
-      - ./docker/mysql/data:/data/db
+    db:
+        build:
+            context: .
+            dockerfile: docker/db/Dockerfile
+            args:
+                - TZ=Europe/Moscow
+        environment:
+            MYSQL_DATABASE: 'db'
+        ports:
+            - 3306:3306
+        volumes:
+            - ./docker/db:/usr/src/app/docker/db
 
 networks:
-  nginx-proxy:
-    external:
-      name: nginx-proxy
+    nginx-proxy:
+        external:
+            name: nginx-proxy

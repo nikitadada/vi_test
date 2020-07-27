@@ -1,4 +1,5 @@
 FROM php:7.4-fpm
+RUN docker-php-ext-install mysqli pdo pdo_mysql
 
 RUN echo "$(curl -sS https://composer.github.io/installer.sig) -" > composer-setup.php.sig \
         && curl -sS https://getcomposer.org/installer | tee composer-setup.php | sha384sum -c composer-setup.php.sig \
