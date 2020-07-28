@@ -27,7 +27,7 @@
 ``` 
 {
    "orderId": 3,
-   "orderStatus": "paid"
+   "orderStatus": "new"
 } 
 ```
 
@@ -41,7 +41,7 @@
 ``` 
 {
    "orderId": 3,
-   "orderStatus": "new"
+   "orderStatus": "paid"
 } 
 ```
 

@@ -8,7 +8,6 @@ use Symfony\Component\DependencyInjection\Exception\InvalidArgumentException;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 use Symfony\Bridge\ProxyManager\LazyProxy\Instantiator\RuntimeInstantiator;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use App\CompilerPass\RoutingCompilerPass;
 
 class Container extends ContainerBuilder {
 

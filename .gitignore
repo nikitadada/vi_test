@@ -1,5 +1,5 @@
 /vendor/
 .idea/
 
-/docker/mysql/data/*
-!/docker/mysql/data/.gitkeep
+/docker/db/data/*
+!/docker/db/data/.gitkeep

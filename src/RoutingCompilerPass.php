@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace App\CompilerPass;
+namespace App;
 
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -14,7 +14,7 @@ class RoutingCompilerPass implements CompilerPassInterface
 
         $collectionTags = $container->findTaggedServiceIds('route_collection');
 
-        $routeCollections = array();
+        $routeCollections = [];
         foreach ($collectionTags as $serviceName => $tagData) {
             $routeCollections[] = $container->getDefinition($serviceName);
         }

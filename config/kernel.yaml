@@ -20,12 +20,6 @@ services:
             $requestStack: "@request_stack"
             $context: "@router.request_context"
 
-    router.generator:
-        class: Symfony\Component\Routing\Generator\UrlGenerator
-        arguments:
-            $routes: "@route.collection"
-            $context: "@router.request_context"
-
     request:
         class: Symfony\Component\HttpFoundation\Request
         factory: [ Symfony\Component\HttpFoundation\Request, createFromGlobals ]
