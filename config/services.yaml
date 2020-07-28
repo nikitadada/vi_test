@@ -23,3 +23,8 @@ services:
     billing.service:
         class: App\Service\BillingService
         arguments: ["@guzzlehttp.client"]
+
+    exception.listener:
+        class: App\EventListener\ExceptionListener
+        tags:
+            - { name: kernel.event_listener, event: kernel.exception }
